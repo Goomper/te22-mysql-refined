@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    {% block content %}
+    <p>{{ message }}</p>
+    <form action="/birds/" method="POST">
+        <label for="species_id">Art</label>
+        <select name="species_id" id="species_id">
+            {% for item in species %}
+            <option value="{{ item.id }}">Art {{ item.id}}: {{ item.name }}</option>
+            {% endfor %}
+        </select>
+        <label for="name">Namn</label>
+        <input type="text" name="name" id="name">
+        <label for="wingspan">Wingspan</label>
+        <input type="number" name="wingspan" id="wingspan">
+        <button type="submit">Submit</button>
+      </form>
+    {% endblock %}
+</body>
+</html>
