@@ -1,9 +1,16 @@
-{% extends "layout.njk" %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
 <main>
     <h1>{{ title }}</h1>
-    <p>{{ message }}</p>
+    <a href="/tweeter/tweets/create">Create A New Tweet</a>
+    
     <ul class="tweets">
         {% for tweet in tweets %}
         <li class="tweet">
@@ -13,11 +20,19 @@
                     <time datetime="{{ tweet.updated_at }}">{{ tweet.updated_at }}</time>
                 </header>
                 <p>{{ tweet.message }}</p>
+                <p>{{ reply }}</p>
                 <footer>
                     <ul>
-                        <li> Shared </li>
-                        <li> Reply </li>
+                        <form action="tweets/{{ tweet.id }}/edit" method="get">
+                            <button type="submit" id="{{ tweet.id }}">edit</button>
+                        </form>
+                        <form action="tweets/{{ tweet.id }}/reply" method="get">
+                            <button type="submit" id="{{ tweet.id }}">reply</button>
+                        </form>
                         <li>Favourites</li>
+                        <form action="tweets/{{ tweet.id }}/delete" method="get">
+                            <button type="submit" id="{{ tweet.id }}">delete</button>
+                        </form>
                     </ul>
                 </footer>
             </article>
@@ -25,4 +40,5 @@
         {% endfor %}
     </ul>
 </main>
-{% endblock %}
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TweetCreator</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <div>
+        <form action="/tweeter/tweets" method="post">
+            <div>
+                <label for="message">Type Tweet Message Here:</label>
+            </div>
+            <div>
+                <textarea name="message" id="message"></textarea>
+            </div>
+            <div>
+                <label for="author_id">User</label>
+                <select name="author_id" id="author_id">
+                    {% for item in users %}
+                    <option value="{{ item.id }}">{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <input type="submit">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
